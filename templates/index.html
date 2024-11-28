@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interativo - Paradas de Ônibus</title>
+    <!-- Link para o Font Awesome (para o ícone de ônibus) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #003366; /* Azul marinho */
+            color: white; /* Cor da letra branca */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center; /* Alinha o ícone e o título na mesma linha */
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h1 i {
+            margin-right: 10px; /* Espaço entre o ícone e o título */
+            font-size: 30px;
+        }
+
+        #map {
+            height: 500px; /* Altura ajustável */
+            width: 100%;   /* Largura total */
+        }
+    </style>
+</head>
+<body>
+    <!-- Título com ícone de ônibus -->
+    <h1>
+        <i class="fas fa-bus"></i> <!-- Ícone de Ônibus -->
+        Paradas Seguras de Ônibus - Fortaleza
+    </h1>
+    <div id="map"></div>
+
+    <!-- Script para carregar o Google Maps API -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap">
+    </script>
+
+    <!-- Passar o token JWT do back-end para o JavaScript -->
+    <script>
+        const jwtToken = "{{ JWT_TOKEN }}";  // Token JWT gerado automaticamente pelo back-end
+        localStorage.setItem("jwt_token", jwtToken);  // Salva o token no localStorage para uso nas requisições
+    </script>
+
+    <!-- Script principal da aplicação -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
